@@ -1,11 +1,11 @@
-class User < ApplicationRecord
-    validates :password, presence: true, confirmation: true
-    attr_accessor :password, :password_confirmation
-
-    def password=(val)
-        if val.present?
-            self.pass = BCrypt::Password.create(val)
-        end
-        @password = val
+class << self
+  def check(email, password)
+    user = self.find_by(email: email)
+    user_pass = self.find_by(password: password)
+    if user == user_pass
+      user
+    else
+      nil
     end
+  end
 end

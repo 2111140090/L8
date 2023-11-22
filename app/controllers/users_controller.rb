@@ -1,26 +1,31 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-  
-  def new
-    @user = User.new
-  end
-  
-  def create
-    @user = User.new(
-      uid: params[:user][:uid],
-      password: params[:user][:password],
-      password_confirmation: params[:user][:password_confirmation])
-    if @user.save
-      redirect_to users_path
-    else
-      render 'new'
-    end
-  end
-  
-  def destroy
-    User.find(params[:id]).destroy
+ def new
+ end
+
+#セッションを取得/ログイン
+ def create
+  #user.rbに書いたクラスメソッドcheckを使う。フォームからの値をparamsメソッドで受け取る。
+  @user = User.check(params[:session][:email], params[:session][:password])
+
+  #@userがtrueなら、@userのnameをハッシュsessionにキー[:name]でセットする。
+  if @user
+    session[:name] = @user.name
+    #メッセージをハッシュflashにキー[:success]でセットする。
+    flash[:success] = "ログインに成功しました。"
+    #rootのページに遷移する。
     redirect_to root_path
+  else
+    flash.now[:error] = "メールアドレスとパスワードが一致しません。"
+    render "new"
   end
+ end
+
+#セッションを破棄/ログアウト
+ def destroy
+  #session[:name]に入れた値をdeleteメソッドで削除する。
+  session.delete(:name)
+  redirect_to new_sessions_path
+  #個別ルーティングの場合
+  #redirect_to signin_path
+ end
 end
