@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
   root 'top#login'
-  resource :sessions, only: [:new, :create, :destroy]
+  get 'top/login'
+  post 'top/login'
+  get 'top/logout'
+  resources :users
+  resources :likes, only: [:create, :destroy]
 end

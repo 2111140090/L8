@@ -1,31 +1,58 @@
 class UsersController < ApplicationController
- def new
- end
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-#セッションを取得/ログイン
- def create
-  #user.rbに書いたクラスメソッドcheckを使う。フォームからの値をparamsメソッドで受け取る。
-  @user = User.check(params[:session][:email], params[:session][:password])
-
-  #@userがtrueなら、@userのnameをハッシュsessionにキー[:name]でセットする。
-  if @user
-    session[:name] = @user.name
-    #メッセージをハッシュflashにキー[:success]でセットする。
-    flash[:success] = "ログインに成功しました。"
-    #rootのページに遷移する。
-    redirect_to root_path
-  else
-    flash.now[:error] = "メールアドレスとパスワードが一致しません。"
-    render "new"
+  # GET /users
+  def index
+    @users = User.all
   end
- end
 
-#セッションを破棄/ログアウト
- def destroy
-  #session[:name]に入れた値をdeleteメソッドで削除する。
-  session.delete(:name)
-  redirect_to new_sessions_path
-  #個別ルーティングの場合
-  #redirect_to signin_path
- end
+  # GET /users/1
+  def show
+  end
+
+  # GET /users/new
+  def new
+    @user = User.new
+  end
+
+  # GET /users/1/edit
+  def edit
+  end
+
+  # POST /users
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  # PATCH/PUT /users/1
+  def update
+    if @user.update(user_params)
+      redirect_to @user, notice: 'User was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  # DELETE /users/1
+  def destroy
+    @user.destroy
+    redirect_to users_url, notice: 'User was successfully destroyed.'
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def user_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
 end
