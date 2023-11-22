@@ -1,0 +1,10 @@
+<!-- ログアウトリンク -->
+<%= link_to "Log Out", :sessions, method: :delete %>
+<!-- 個別ルーティングの場合 -->
+<%# link_to "Log Out", signout_path, method: :delete %>
+
+<!-- ログイン成功のメッセージを出す -->
+<p><%= flash[:success] %></p>
+
+<!-- ログインしたユーザーの名前を表示する -->
+<p>Welcom<%= session[:name] %>さん</p>

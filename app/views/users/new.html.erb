@@ -1,16 +1,16 @@
-<%= form_for @user, url: {action: :create} do |f| %>
+<h1>Sign in</h1>
 
-    <%= f.label :uid, 'UID' %>
-    <%= f.text_field :uid %>
-    <p>
-        <%= f.label :password, 'PASS' %>
-        <%= f.password :password %>
-    </p>
-    <p>
-        <%= f.label :password_confirmation, 'パスワード(確認)' %>
-        <%= f.password_field :password_confirmation %>
-    </p>
-    
-    <%= f.submit '登録' %>
-   
+<!-- ログイン失敗のメッセージを出す -->
+<%= flash[:error] %>
+
+<%= form_for(:session, url: sessions_path) do |f|  %>
+<!-- 個別ルーティングの場合 -->
+<%#= form_for(:session, url: signin_path) do |f|  %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Sign in" %>
 <% end %>
