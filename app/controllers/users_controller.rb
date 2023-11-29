@@ -1,26 +1,31 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-  
-  def new
-    @user = User.new
-  end
-  
-  def create
-    @user = User.new(
-      uid: params[:user][:uid],
-      password: params[:user][:password],
-      password_confirmation: params[:user][:password_confirmation])
-    if @user.save
-      redirect_to users_path
-    else
-      render 'new'
+    
+    
+    def new
+        @users = User.new
     end
-  end
-  
-  def destroy
-    User.find(params[:id]).destroy
-    redirect_to root_path
-  end
+    
+    def create
+
+        @user = User.new(
+            uid: params[:user][:uid],
+            password: params[:user][:password],
+            password_confirmation: params[:user][:password_confirmation])
+        if User.find_by(uid: params[:user][:uid])
+            render "exist_error"
+        else
+        
+            if @user.save
+                redirect_to users_path
+            else
+                render 'new'
+            end
+        end
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        redirect_to root_path
+    end
 end

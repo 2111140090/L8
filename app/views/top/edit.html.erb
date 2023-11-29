@@ -1,0 +1,7 @@
+<%= form_for @user , url: {action: :update} do |f| %>
+    <%= f.label :uid, 'ユーザーID：' %>
+    <%= f.text_field :uid %>
+    <%= f.submit 'ユーザー情報変更' %>
+<% end %>
+
+<br><%= link_to 'ユーザー一覧に戻る', users_path %>
