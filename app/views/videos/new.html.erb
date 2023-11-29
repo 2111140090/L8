@@ -1,0 +1,6 @@
+<%= form_with model: @video, local: true do |f| %>
+  タイトル  <%= f.text_field :title %> <br><br>
+  概要  <%= f.text_area :introduction %> <br><br>
+  動画  <%= f.file_field :video %> <br><br>
+  <%= f.submit "投稿" %>
+<% end %>

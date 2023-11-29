@@ -1,0 +1,11 @@
+YouTube<br>
+
+<% @videos.each do |e| %>
+  <p>
+      <%= e.title %><br>
+      <%= e.introduction %>
+      <%= link_to "再生", video_path(e) %>
+  </p>
+<% end %>
+
+<%= link_to "動画投稿する", new_video_path %>
