@@ -3,6 +3,7 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.1.1"
 gem "rails", "~> 7.1.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -58,6 +59,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8deeed32cb61ff6115dc89c5cd903c84da4a7a23
 end
 
 group :test do
