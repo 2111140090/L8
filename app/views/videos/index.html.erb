@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+<% if current_user == nil %>
+    <%= link_to 'ログイン', controller: :top,action: :login_form %>
+<% else %>
+    <h1><%= current_user.uid %>さんようこそ</h1>
+    <%= link_to 'ログアウト', controller: :top,action: :logout %>
+<% end %>
+<h1>動画一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    　<th>いいね数</th>
+    　<% if @user_id != nil %>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @videos.each do |e| %>
+      <tr>
+        <td><%= e.message %></td>
+        <td><center><%= e.likes.count %></center></td>
+        <% if @user_id != nil %>
+          <td> <%= link_to 'いいね',  controller: :likes, action: :create, video_id: e.id, method: :post %> </td>
+          <td><%= link_to 'いいね削除', like_path(e), method: :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+=======
 YouTube<br>
 
 <% @videos.each do |e| %>
@@ -9,3 +43,4 @@ YouTube<br>
 <% end %>
 
 <%= link_to "動画投稿する", new_video_path %>
+>>>>>>> 755402eefd9b953cb0a155bcbd3cdf0f59b06b82
