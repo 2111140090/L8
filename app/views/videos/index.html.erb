@@ -6,12 +6,27 @@
 <% end %>
 <h1>動画一覧</h1>
 
-<% @videos.each do |e| %>
-
-    <p>
-        <%= e.message %>
-        <%= link_to "削除", video_path(e), data: {"turbo-method": :delete} %>
-        <%= link_to 'いいね', likes_path(video_id: e.id), method: :post %>
-        <%= link_to 'いいね削除', like_path(e), method: :delete %>
-    </p>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    　<th>いいね数</th>
+    　<% if @user_id != nil %>
+        <th></th>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @videos.each do |e| %>
+      <tr>
+        <td><%= e.message %></td>
+        <td><center><%= e.likes.count %></center></td>
+        <% if @user_id != nil %>
+          <td> <%= link_to 'いいね',  controller: :likes, action: :create, video_id: e.id, method: :post %> </td>
+          <td><%= link_to 'いいね削除', like_path(e), method: :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'top/login'
   post 'top/login'
   get 'top/logout'
+  post 'top/edit'
   
   root 'videos#index'
   get 'videos/index'
