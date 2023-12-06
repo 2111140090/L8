@@ -1,5 +1,6 @@
 class Video < ApplicationRecord
     has_one_attached :video
+<<<<<<< HEAD
     
     has_many :likes, dependent: :destroy
     has_many :like_users, source: :user, through: :likes
@@ -16,3 +17,6 @@ class Video < ApplicationRecord
     end
 end
 
+=======
+end
+>>>>>>> 755402eefd9b953cb0a155bcbd3cdf0f59b06b82

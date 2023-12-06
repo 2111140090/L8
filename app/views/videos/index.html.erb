@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% if current_user == nil %>
     <%= link_to 'ログイン', controller: :top,action: :login_form %>
 <% else %>
@@ -30,3 +31,16 @@
     <% end %>
   </tbody>
 </table>
+=======
+YouTube<br>
+
+<% @videos.each do |e| %>
+  <p>
+      <%= e.title %><br>
+      <%= e.introduction %>
+      <%= link_to "再生", video_path(e) %>
+  </p>
+<% end %>
+
+<%= link_to "動画投稿する", new_video_path %>
+>>>>>>> 755402eefd9b953cb0a155bcbd3cdf0f59b06b82
