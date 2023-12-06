@@ -1,0 +1,17 @@
+<% if current_user == nil %>
+    <%= link_to 'ログイン', controller: :top,action: :login_form %>
+<% else %>
+    <h1><%= current_user.uid %>さんようこそ</h1>
+    <%= link_to 'ログアウト', controller: :top,action: :logout %>
+<% end %>
+<h1>動画一覧</h1>
+
+<% @videos.each do |e| %>
+
+    <p>
+        <%= e.message %>
+        <%= link_to "削除", video_path(e), data: {"turbo-method": :delete} %>
+        <%= link_to 'いいね', likes_path(video_id: e.id), method: :post %>
+        <%= link_to 'いいね削除', like_path(e), method: :delete %>
+    </p>
+<% end %>

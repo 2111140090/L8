@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   post 'top/login'
   get 'top/logout'
   
-  root 'movies#index'
-  get 'movies/index'
+  root 'videos#index'
+  get 'videos/index'
   resources :users
-  resources :movies
+  resources :videos
   resources :likes, only: [:create, :destroy]
 end

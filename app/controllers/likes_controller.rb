@@ -1,15 +1,15 @@
 class LikesController < ApplicationController
   def create
-    movie = Movie.find(params[:movie_id])
+    video = Video.find(params[:video_id])
     user = User.find_by(uid: session[:login_uid])
-    user.like_movies << movie
+    user.like_videos << video
     redirect_to root_path
   end
 
   def destroy
-    movie = Movie.find(params[:id])
+    video = Video.find(params[:id])
     user = User.find_by(uid: session[:login_uid])
-    movie.likes.find_by(user_id: user.id).destroy
+    video.likes.find_by(user_id: user.id).destroy
     redirect_to root_path
   end
 end

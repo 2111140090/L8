@@ -1,6 +1,0 @@
-<%= form_with model: @movie, local: true do |form| %>
-  <p>タイトル</p><%= form.text_field :title %> <br>
-  <p>概要</p><%= form.text_area :introduction %> <br>
-  <p>動画</p><%= form.file_field :movie %> <br>
-  <%= form.submit %>
-<% end %>
