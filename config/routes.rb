@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   
   root 'videos#index'
   get 'videos/index'
-  get 'videos/new'
-  get 'videos/show'
+  get "up" => "rails/health#show", as: :rails_health_check
   resources :users
   resources :videos
   resources :likes, only: [:create, :destroy]
