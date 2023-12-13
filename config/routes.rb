@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
   root "videos#index"
   
   resources :videos, only: [:new, :create, :index, :show, :destroy] do
-<<<<<<< HEAD
     resources :post_comments, only: [:create, :destroy]  
   end
   
@@ -24,28 +22,4 @@ Rails.application.routes.draw do
   get 'top/login'
   
   resources :users
-  
-=======
-    resources :post_comments, only: [:create]
-=======
-  get 'likes/create'
-  get 'likes/destroy'
-  post 'top/login'
-  get 'top/login_form'
-  post 'top/login_form'
-  get 'top/login'
-  post 'top/login'
-  get 'top/logout'
-  post 'top/edit'
-  get 'users/new'
-  
-  
-  root 'videos#index'
-  get 'videos/index'
-  get "up" => "rails/health#show", as: :rails_health_check
-  resources :users
-  resources :videos
-  resources :likes, only: [:create, :destroy]
->>>>>>> Y
->>>>>>> b3a4a8dcffc8a02e2b992b71bf6a3bf712f4f1fb
 end
