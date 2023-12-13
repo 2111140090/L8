@@ -61,10 +61,8 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 23088fa9d5639b64b273766c8aaa7a563bb1897b
+
 end
 
 group :test do

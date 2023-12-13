@@ -15,11 +15,18 @@ class VideosController < ApplicationController
 
     def show
         @video = Video.find(params[:id])
+        @post_comment = PostComment.new
     end
 
     private
 
     def video_params
         params.require(:video).permit(:title, :introduction, :video)
+    end
+    
+    def destroy
+        video = Video.find(params[:id])
+        video.destroy
+        redirect_to root_path
     end
 end

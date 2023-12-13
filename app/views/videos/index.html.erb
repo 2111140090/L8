@@ -1,12 +1,22 @@
 YouTube<br>
 
+<% if current_user == nil %>
+    <%= link_to 'ログイン', controller: :top,action: :login_form %>
+<% else %>
+    <h1><%= current_user.uid %>さんようこそ</h1>
+    <%= link_to 'ログアウト', controller: :top,action: :logout %>
+<% end %>
+
 <% @videos.each do |e| %>
   <p>
       <%= e.title %><br>
       <%= e.introduction %>
       <%= link_to "再生", video_path(e) %>
+      <% if current_user != nil %>
+        <% link_to '削除', video_path(e), data: { turbo_method: :delete } %>
+      <% end %>
   </p>
 <% end %>
 
-<%= link_to "動画投稿する", new_video_path %>
+<%= link_to "動画を投稿する", new_video_path %>
 
