@@ -4,22 +4,20 @@
     <h1><%= current_user.uid %>さんようこそ</h1>
     <%= link_to 'ログアウト', controller: :top,action: :logout %>
 <% end %>
+
 <h1>動画一覧</h1>
+<br><%= link_to '動画投稿', controller: :videos,action: :new %>
 
 <% @videos.each do |e| %>
 
     <p>
         <%= e.title %><br>
-        <%= e.introduction %>
-        <%= link_to "再生", video_path(e) %>
-        <%= e.message %>
-        <% if @video.like?(current_user) %>
-            <%= link_to video_likes_path(@video.id), method: :destroy do %>
-                <span style="color:red;">❤︎</span>
-        <% end %>
-        <% else %>
-            <%= link_to video_likes_path(@video.id), method: :create do %>
-                <span>❤︎</span>
-        <% end %>
+        <%= e.introduction %><br>
+        <%= link_to "再生", video_path(e) %><br>
+        <%= e.video %>
+        <%= link_to "削除", video_path(e), data: {"turbo-method": :delete} %>
+        <%= link_to 'いいね', videos_path(video_id: e.id), method: :post %>
+        <%= link_to 'いいね削除', video_path(e), method: :delete %>
     </p>
 <% end %>
+
