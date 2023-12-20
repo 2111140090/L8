@@ -1,8 +1,12 @@
 class User < ApplicationRecord
-    has_many :tweets, dependent: :destroy #ユーザを消すとツイートも消える
+    has_many :videos, dependent: :destroy #ユーザを消すとツイートも消える
     has_many :likes, dependent: :destroy #ユーザを消すといいねも消える
+<<<<<<< HEAD
     has_many :like_tweets, source: :tweet, through: :likes
     has_many :post_comments, dependent: :destroy
+=======
+    has_many :like_videos, source: :video, through: :likes
+>>>>>>> Y
 
     validates :uid,  presence: true
     validates :uid, uniqueness: true
@@ -16,4 +20,6 @@ class User < ApplicationRecord
         end
         @password = val
     end
+    
+     
 end
