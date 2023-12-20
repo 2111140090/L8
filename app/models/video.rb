@@ -14,5 +14,7 @@ class Video < ApplicationRecord
     def liked?(user) #いいね済みか調べる(true / false)
         like_users.include?(user)
     end
+    
+    
 end
 
