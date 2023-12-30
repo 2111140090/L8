@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 #  get 'users/registered'
 
   
-  root 'users#new'
+  root 'videos#index'
   get 'videos/index'
   get "up" => "rails/health#show", as: :rails_health_check
   resources :users
