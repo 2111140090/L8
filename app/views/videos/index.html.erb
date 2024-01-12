@@ -1,13 +1,6 @@
 YouTube<br>
 
 <% @videos.each do |e| %>
-<<<<<<< HEAD
-  <p>
-      <%= e.title %><br>
-      <%= e.introduction %>
-      <%= link_to "再生", video_path(e) %>
-  </p>
-=======
 
     <p>
         <%= e.title %><br>
@@ -17,7 +10,6 @@ YouTube<br>
         <%= link_to 'いいね', likes_path(video_id: e.id), method: :post %>
         <%= link_to 'いいね削除', like_path(e), method: :delete %>
     </p>
->>>>>>> Y
 <% end %>
 
 <%= link_to "動画投稿する", new_video_path %>
