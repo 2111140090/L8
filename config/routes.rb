@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
   
 
 
+=======
+>>>>>>> Y
 
   post 'top/login'
   get 'top/login_form'
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
   get 'top/logout'
   post 'top/edit'
   get 'users/new'
+<<<<<<< HEAD
   get 'users/exist_error'
   get 'users/registered'
 
@@ -36,9 +40,24 @@ Rails.application.routes.draw do
 
   
 
+=======
+  post "likes/create"
+  get "likes/destroy"
+#  get 'users/exist_error'
+#  get 'users/registered'
+
+  
+  root 'videos#index'
+>>>>>>> Y
   get 'videos/index'
 
   resources :users
+<<<<<<< HEAD
   
   resources :likes, only: [:create, :destroy]
 end
+=======
+  resources :videos
+  resources :likes
+end
+>>>>>>> Y

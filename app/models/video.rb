@@ -1,10 +1,17 @@
 class Video < ApplicationRecord
     has_one_attached :video
+<<<<<<< HEAD
     has_many :post_comments, dependent: :destroy
+=======
+    
+    has_many :likes, dependent: :destroy
+    has_many :like_users, through: :likes, source: :user
+    
+>>>>>>> Y
     def like(user)
         likes.create(user_id: user.id)
     end
-
+    
     def unlike(user)
         likes.find_by(user_id: user.id).destroy
     end
@@ -12,7 +19,11 @@ class Video < ApplicationRecord
     def liked?(user) #いいね済みか調べる(true / false)
         like_users.include?(user)
     end
+<<<<<<< HEAD
 
 end
 
 
+=======
+end
+>>>>>>> Y
