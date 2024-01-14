@@ -15,8 +15,8 @@
         <%= e.introduction %><br>
         <%= link_to "再生", video_path(e) %><br>
         <%= @like_count %>
-        <%= link_to 'いいね', likes_path(video_id: e.id), method: :post %>
-        <%= link_to 'いいね削除', like_path(e), method: :delete %>
+        <%= link_to 'いいね', likes_path(video_id: e.id), data: {turbo_method: :post} %>
+        <%= link_to 'いいね削除', likes_destroy_path(e), method: :delete %>
     </p>
 <% end %>
 

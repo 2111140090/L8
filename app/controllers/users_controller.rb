@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     
+    require 'bcrypt'
+    
+    def index
+        @users = User.all
+    end
     
     def new
-        @users = User.new
+        @user = User.new
     end
     
     def create
@@ -11,21 +16,14 @@ class UsersController < ApplicationController
             uid: params[:user][:uid],
             password: params[:user][:password],
             password_confirmation: params[:user][:password_confirmation])
-        if User.find_by(uid: params[:user][:uid])
+            render 'registered'
+        if User.find_by(uid: params[:uid])
             render "exist_error"
-        else
-        
             if @user.save
                 redirect_to users_path
             else
                 render 'new'
             end
         end
-    end
-
-    def destroy
-        user = User.find(params[:id])
-        user.destroy
-        redirect_to root_path
     end
 end

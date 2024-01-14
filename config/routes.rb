@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'top/logout'
   post 'top/edit'
   get 'users/new'
+  post "likes/create"
+  get "likes/destroy"
 #  get 'users/exist_error'
 #  get 'users/registered'
 
