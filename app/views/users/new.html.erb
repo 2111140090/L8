@@ -2,11 +2,11 @@
 
 <%= form_for @user , url: {action: :create} do |f| %>
     <%= f.label :uid, 'ユーザID' %>
-    <%= f.text_field :uid %>
+    <%= f.text_field :uid %><br>
     <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password %><br>
     <%= f.label :password_confirmation, 'パスワード(確認)' %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br>
     <%= f.submit '登録' %>
 <% end %>
 <br><%= link_to 'ログインはこちら', controller: :top,action: :login %>
