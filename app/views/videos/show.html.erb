@@ -1,7 +1,27 @@
 <%= link_to "ホーム", root_path %>
 
-<% if @video.video.attached? %>
-  <p><%= @video.title %></p> <br>
-  <p><%= @video.introduction %></p>
+<br><br><% if @video.video.attached? %>
   <video src="<%= rails_blob_path(@video.video) %>" type="video/mp4" controls></video>
+  <h3><%= @video.title %></h3> 
+  <p><%= @video.introduction %></p>
 <% end %>
+
+<div class="comment">
+<div>
+  <p>コメント件数：<%= @video.post_comments.count %></p>
+  <% @video.post_comments.each do |post_comment| %>
+    <%= post_comment.user.uid %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= "   " %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", video_post_comment_path(post_comment.video, post_comment), method: :delete %>
+    <% end %>
+
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@video, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメント" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+</div>

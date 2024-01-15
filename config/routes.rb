@@ -9,19 +9,17 @@ Rails.application.routes.draw do
   # root "posts#index"
   
   root "videos#index"
+  
   resources :videos, only: [:new, :create, :index, :show, :destroy] do
-    resources :post_comments, only: [:create]
+    resources :post_comments, only: [:create, :destroy]  
+  end
 
-  get 'likes/create'
-  get 'likes/destroy'
-  post 'top/login'
-  get 'top/login_form'
-  post 'top/login_form'
-  get 'top/login'
   post 'top/login'
   get 'top/logout'
-  post 'top/edit'
-  get 'users/new'
-  
-  
+  post 'top/logout'
+  get 'top/main'
+  get 'top/login_form'
+  get 'top/login'
+
+  resources :users
 end
