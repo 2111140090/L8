@@ -1,4 +1,4 @@
-<%= link_to "ホーム", root_path %>
+<%= button_to 'ホーム', root_path, method: :get %>
 
 <br><br><% if @video.video.attached? %>
   <video src="<%= rails_blob_path(@video.video) %>" type="video/mp4" controls></video>
