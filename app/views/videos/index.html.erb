@@ -1,28 +1,34 @@
 <div class="title">
-YouTube(仮)
+YouTubo
 </div>
 
 <div class="login">
 <% if current_user == nil %>
     <%= link_to 'ログイン', controller: :top,action: :login_form %>
 <% else %>
-    <p><%= current_user.uid %>さんようこそ</p>
+    <%= current_user.uid %><br>
     <%= link_to 'ログアウト', controller: :top,action: :logout %>
 <% end %>
 </div>
+
+<% if session[:login_uid] != nil %>
+  <%= link_to "動画を投稿する", new_video_path %>
+<% end %>
 
 <% @videos.each do |e| %>
   <p>
     <div class="videoinfo">
       <%= e.title %><br>
-      <%= e.introduction %><br>
-      <%#= e.user.uid %>
-      <%= link_to "再生", video_path(e) %>
+      <%#= e.introduction %>
+      <%= link_to "再生", video_path(e) %><br>
+      <% if e.image.attached? %>
+        <%= image_tag e.image %>
+      <% end %><br>
       <% if current_user != nil %>
-        <% link_to '削除', video_path(e), data: { turbo_method: :delete } %>
+        <%= link_to '削除', video_path(e), data: { turbo_method: :delete } %>
       <% end %>
     </div>
   </p>
 <% end %>
 
-<%= link_to "動画を投稿する", new_video_path %>
+

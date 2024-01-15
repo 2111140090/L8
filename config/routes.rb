@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   get 'top/login_form'
   get 'top/login'
   
+  
   resources :users
 end
