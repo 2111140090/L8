@@ -1,7 +1,13 @@
-<%= link_to "ホーム", root_path %>
+<h1>動画</h1>
 
 <% if @video.video.attached? %>
-  <p><%= @video.title %></p> <br>
-  <p><%= @video.introduction %></p>
+  <table>
+    <tr><td>タイトル　</td><td><%= @video.title %></td></tr>
+    <tr><td>概要　</td><td><%= @video.introduction %></td></tr>
+  </table>
   <video src="<%= rails_blob_path(@video.video) %>" type="video/mp4" controls></video>
+  
 <% end %>
+
+<%= button_to 'ホーム', root_path, method: :get %>
+

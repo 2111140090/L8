@@ -1,12 +1,19 @@
 <h1>ログイン</h1>
 
 <%= form_tag top_login_path, method: :post do %>
-    <%= label_tag :uid, 'ユーザーID：' %>
-    <%= text_field_tag :uid %>
-    <%= label_tag :pass, 'パスワード：' %>
-    <%= password_field_tag :pass %>
-    <%= submit_tag 'ログイン' %>
+  <table>
+    <tr>
+        <td><%= label_tag :uid, 'ユーザーID：' %></td>
+        <td><%= text_field_tag :uid %></td>
+    </tr>
+    <tr>
+        <td><%= label_tag :pass, 'パスワード：' %></td>
+        <td><%= password_field_tag :pass %></td>
+    </tr>
+  </table>
+  <br>
+  <%= submit_tag 'ログイン' %>
 <% end %>
 
 
-<br><%= link_to '新規登録はこちら', controller: :users,action: :new %>
+<br><%= button_to '新規登録はこちら', {controller: :users,action: :new}, method: :get %>

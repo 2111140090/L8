@@ -1,14 +1,23 @@
 YouTube<br>
 
-ログイン中：<%= session[:login_uid]%> さん  　 <%= link_to "ログアウト", new_user_path %>
-
-<% @videos.each do |e| %>
-
-    <p>
-        <%= e.title %><br>
-        <%= e.introduction %><br>
-        <%= link_to "再生", video_path(e) %><br>
-    </p>
+<% if session[:login_uid] == nil %>
+    <table><tr><td>ログインしていません　</td><td><%= button_to "ログイン",  {controller: :top,action: :login_form}, method: :get %></td></TD></tr></table>  <br>
+<% else %>
+    <table><tr><td>ログイン中：<%= session[:login_uid]%> さん　</td><td><%= button_to "ログアウト", top_logout_path, method: :get %></td></TD></tr></table>  <br>
 <% end %>
-
-<%= link_to "動画投稿する", new_video_path %>
+<br>
+投稿一覧
+<table border="1" style="border-collapse: collapse">
+    <tr><th>タイトル</th><th>概要</th><th>再生</th></tr>
+    <% @videos.each do |e| %>
+    <tr>
+        <td><%= e.title %></td>
+        <td><%= e.introduction %></td>
+        <td><%= button_to "再生", video_path(e), method: :get %></td>
+    </tr>
+    <% end %>
+</table>
+<br>
+<% if session[:login_uid] != nil %>
+    <%= button_to "動画投稿する", new_video_path, method: :get %>
+<% end %>
