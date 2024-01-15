@@ -9,11 +9,22 @@ class VideosController < ApplicationController
     end
     
     def create
-        @video = Video.new(video_params)
-        @video.save
-        redirect_to @video
+        if (params[:video][:title] == "")
+            redirect_to videos_notitle_path
+        else
+            if (params[:video][:video] == nil)
+                redirect_to videos_nofile_path
+            else
+                @video = Video.new(video_params)
+                if @video.save
+                    redirect_to @video
+                else
+                    redirect_to videos_error_path
+                end
+            end
+        end
     end
-
+    
     def show
         @video = Video.find(params[:id])
     end
