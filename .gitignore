@@ -7,9 +7,15 @@
 # Ignore bundler config.
 /.bundle
 
+<<<<<<< HEAD
 # Ignore all environment files (except templates).
 /.env*
 !/.env*.erb
+=======
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-*
+>>>>>>> 076b3402ad3ff966ad7f8f55907e1cdc041c60a1
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -22,7 +28,11 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+<<<<<<< HEAD
 # Ignore storage (uploaded files in development and any SQLite databases).
+=======
+# Ignore uploaded files in development.
+>>>>>>> 076b3402ad3ff966ad7f8f55907e1cdc041c60a1
 /storage/*
 !/storage/.keep
 /tmp/storage/*
