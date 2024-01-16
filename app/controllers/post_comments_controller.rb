@@ -6,6 +6,11 @@ class PostCommentsController < ApplicationController
         comment.save
         redirect_to video_path(video)
     end
+    
+    def destroy
+        PostComment.find(params[:id]).destroy
+        redirect_to video_path(params[:video_id])
+    end 
 
     private
 
@@ -17,8 +22,4 @@ class PostCommentsController < ApplicationController
         @post_comment = PostComment.new
     end
     
-    def destroy
-        PostComment.find(params[:id]).destroy
-        redirect_to video_path(params[:video_id])
-    end 
 end

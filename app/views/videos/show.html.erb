@@ -13,9 +13,12 @@
     <%= post_comment.user.uid %>
     <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= "   " %><%= post_comment.comment %>
     <% if post_comment.user == current_user %>
-      <%= link_to "削除", video_post_comment_path(post_comment.video, post_comment), method: :delete %>
+      <%= content_tag :span, class: "inline" do %>
+        <%#= link_to "削除", video_post_comment_path(post_comment.video, post_comment), method: :delete %>
+        <%= button_to '削除', video_post_comment_path(post_comment.video, post_comment), method: :delete %>
+      <% end %>
     <% end %>
-
+    <br>
   <% end %>
 </div>
 <div>

@@ -13,9 +13,11 @@ class UsersController < ApplicationController
     def create
         if User.find_by(uid: params[:user][:uid])
             #あったら、既に登録済みエラー画面
+            logger.debug("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             redirect_to users_exist_error_path
         else
             if (params[:user][:password] != params[:user][:password_confirmation])
+                logger.debug("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 redirect_to users_pw_error_path
             else
                 @user = User.new(
@@ -36,9 +38,9 @@ class UsersController < ApplicationController
         @users = User.all
         render "index"
     end
-      
+    
     def show
-        User.find_by(uid: params[:uid]).destroy
+        User.find_by(uid: params[:uid])
         @users = User.all
         render "index"
     end

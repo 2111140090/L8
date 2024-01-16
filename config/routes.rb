@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :videos, only: [:new, :create, :index, :show, :destroy] do
     resources :post_comments, only: [:create, :destroy]  
   end
+  
+  get "post_comments/destroy"
 
   post 'top/login'
   get 'top/logout'
@@ -25,5 +27,27 @@ Rails.application.routes.draw do
   get 'top/login_form'
   get 'top/login'
 
-  resources :users
+  resources :users, except: [:show]
+  
+  post "likes/create"
+  get "likes/destroy"
+  get 'users/exist_error'
+  get 'users/pw_error', to: 'users#pw_error'
+  get 'users/registered'
+  get 'users/:uid' => 'users#destroy'
+  
+  get 'videos/error'
+  get 'videos/nofile'
+  get 'videos/notitle'
+  
+  post 'top/login'
+  get 'top/login_form'
+  post 'top/login_form'
+  get 'top/login'
+  post 'top/login'
+  get 'top/logout'
+  get 'top/error'
+  post 'top/edit'
+  get 'users/new'
+
 end
