@@ -15,6 +15,46 @@
  */
 
 
+.title {
+    width: 15%;
+    height: 30px;
+    color: white;
+    background-color: #0099FF;
+    border-radius:10px;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.login {
+    text-align: right;
+}
 
 
+video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.comment {
+    border-top: 2px solid;
+    padding: 10px;
+}
+
+.videoinfo {
+    border-top: 2px solid;
+    padding: 10px;
+}
+
+img {
+    width: 480px;
+    height: 270px;
+    /*height: auto;
+    display: block;
+    margin: auto;*/
+}
 

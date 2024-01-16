@@ -1,10 +1,10 @@
 class PostCommentsController < ApplicationController
     def create
-        post_image = PostImage.find(params[:post_image_id])
+        video = Video.find(params[:video_id])
         comment = current_user.post_comments.new(post_comment_params)
-        comment.post_image_id = post_image.id
+        comment.video_id = video.id
         comment.save
-        redirect_to post_image_path(post_image)
+        redirect_to video_path(video)
     end
 
     private
@@ -16,4 +16,9 @@ class PostCommentsController < ApplicationController
     def show
         @post_comment = PostComment.new
     end
+    
+    def destroy
+        PostComment.find(params[:id]).destroy
+        redirect_to video_path(params[:video_id])
+    end 
 end

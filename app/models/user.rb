@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+
     has_many :videos, dependent: :destroy #ユーザを消すとツイートも消える
     has_many :likes, dependent: :destroy #ユーザを消すといいねも消える
 

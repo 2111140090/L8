@@ -1,24 +1,35 @@
-YouTube<br>
+<div class="title">
+YouTubo
+</div>
 
-<% if session[:login_uid] == nil %>
-    <table><tr><td>ログインしていません　</td><td><%= button_to "ログイン",  {controller: :top,action: :login_form}, method: :get %></td></TD></tr></table>  <br>
+<div class="login">
+<% if current_user == nil %>
+    <%= link_to 'ログイン', controller: :top,action: :login_form %>
 <% else %>
-    <table><tr><td>ログイン中：<%= session[:login_uid]%> さん　</td><td><%= button_to "ログアウト", top_logout_path, method: :get %></td></TD></tr></table>  <br>
+    <%= current_user.uid %><br>
+    <%= link_to 'ログアウト', controller: :top,action: :logout %>
+<% end %>
+</div>
 
-<% end %>
-<br>
-投稿一覧
-<table border="1" cellpadding=”10”>
-    <tr><th width="150">タイトル</th><th width="200">概要</th><th width="80">再生</th></tr>
-    <% @videos.each do |e| %>
-    <tr>
-        <td><%= e.title %></td>
-        <td><%= e.introduction %></td>
-        <td align="center"><%= button_to "再生", video_path(e), method: :get %></td>
-    </tr>
-    <% end %>
-</table>
-<br>
 <% if session[:login_uid] != nil %>
-    <%= button_to "動画投稿する", new_video_path, method: :get %>
+  <%= link_to "動画を投稿する", new_video_path %>
 <% end %>
+
+<% @videos.each do |e| %>
+  <p>
+    <div class="videoinfo">
+      <%= e.title %><br>
+      <%#= e.introduction %>
+      <%= link_to "再生", video_path(e) %><br>
+      <% if e.image.attached? %>
+        <%= image_tag e.image %>
+      <% end %><br>
+      <% if current_user != nil %>
+        <%= link_to '削除', video_path(e), data: { turbo_method: :delete } %>
+      <% end %>
+    </div>
+  </p>
+<% end %>
+
+
+

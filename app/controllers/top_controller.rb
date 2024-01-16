@@ -30,6 +30,6 @@ class TopController < ApplicationController
     
     def logout
         session.delete(:login_uid)
-        redirect_to videos_index_path
+        redirect_to root_path
     end
 end

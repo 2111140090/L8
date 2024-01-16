@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: storage/production.sqlite3
+  database: db_by0m
+  username: db_by0m_user
+  password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
