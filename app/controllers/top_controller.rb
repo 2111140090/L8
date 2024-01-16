@@ -9,7 +9,7 @@ class TopController < ApplicationController
         if user != nil
           if BCrypt::Password.new(user.pass) == params[:pass]
             session[:login_uid] = params[:uid]
-            redirect_to videos_index_path
+            redirect_to root_path
           else
             redirect_to top_error_path
           end
